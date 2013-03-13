@@ -4,7 +4,14 @@ This utility helps you in easily adding ability to perform certificate based cli
 
 Never use the system properties javax.net.ssl.*
 ===============================================
-FIXME
+The main problem with using the system properties to specify which key store/trust store to use is that you cannot gurantee if your key store was the first one to be loaded. The behavior of the JSSE is that it reads and loads the key store specified in the system property only once.
+
+If your program is a stand alone program where you set these properties at the beginning of the main() mehtod, then you are fine. But if you are developing a web application which is deployed in a container like Tomcat or Jetty, chances are that the key store might have been accessed at least once before even the control comes to your program. So essentially the System.setProperty() will be a no-op. You can somewhat address this problem by specifying the key store using "-D" flags to your JVM.
+
+The seond problem that you cannot solve using the system properties is that you might have to use more than one key stores. For clarity purposes, I divide the keys and associated certificates into different key stores with different passwords. This results in a cleaner organization as well as better troubleshooting.
+
+Enough talk, how it works
+=========================
 
 Caveats
 =======
