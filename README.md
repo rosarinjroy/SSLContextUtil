@@ -12,7 +12,51 @@ The seond problem that you cannot solve using the system properties is that you 
 
 Enough talk, how it works
 =========================
-FIXME
+Let us get started with a simple example that sets the default SSLContext to the one that is initialized using the utility. You can see the full example in the com/rosarinjroy/Main.java file of the project.
+
+	SSLContextFactory factory = new SSLContextFactory();
+	factory.setKeyStorePath(keyStorePath);
+	factory.setKeyStorePassword(keyStorePassword);
+	factory.setKeyStoreType(keyStoreType);
+	factory.setProtocol(protocol);
+	factory.setSecurityProvider(securityProvider);
+	factory.setPerformStrictNameMatching(false);
+	factory.init();
+	System.out.println("SSLContextFactory initialized successfully: " + factory);
+	SSLContext sslContext = factory.getSSLContext();
+	System.out.println("Successfully created SSLContext");
+	...
+	SSLContext.setDefault(sslContext);
+
+That was simple. All that we did was to instantiate the SSLContextFactory class and set the necessary parameters. To see the full example in action, please compile and run the com.rosarinjroy.Main class.
+
+Integration with Spring
+=======================
+Integrating with Spring framework is very easy. All that you have to do is to initialize the SSLContextFactory as a bean in your applicationContext and set the necessary properties. The following snippet should give you an idea.
+
+	<bean id="sslContextFactory" class="com.rosarinjroy.ssl.SSLContextFactory" init-method="init">
+		<property name="keyStorePath" value="path/to/keystore" />
+		...
+	</bean>
+	<bean id="referringBean" class="x.y.z.ReferringBean">
+		<property name="sslContextFactory" ref="sslContextFactory">
+	</bean>
+
+Integration with HttpClient
+===========================
+Coming soon.
+
+Integration with Metro
+======================
+Coming soon.
+
+Integration with CXF
+======================
+Coming soon.
+
+Integration with Axis2
+======================
+Coming soon.
 
 Caveats
 =======
