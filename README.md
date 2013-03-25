@@ -48,7 +48,13 @@ Coming soon.
 
 Integration with Metro
 ======================
-Coming soon.
+To integrate the SSLContextFactory with Metro, follow the steps given below. The steps assume that you have already initialized the SSLContextFactory.
+
+	SSLContextFactory sslContextFactory = ...;
+	BindingProvider bindingProvider = (BindingProvider) service; 
+	bindingProvider.getRequestContext().put(JAXWSProperties.SSL_SOCKET_FACTORY, sslContextFactory);
+	// In case the method above doesn't work, please try:
+	// bindingProvider.getRequestContext().put("com.sun.xml.internal.ws.transport.https.client.SSLSocketFactory", sslContextFactory);
 
 Integration with CXF
 ======================
