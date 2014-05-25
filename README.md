@@ -44,7 +44,7 @@ Integrating with Spring framework is very easy. All that you have to do is to in
 
 Integration with HttpClient
 ===========================
-Coming soon.
+A good example to provide your own SSLSocketFactory can be found [here](https://hc.apache.org/httpcomponents-client-ga/httpclient/examples/org/apache/http/examples/client/ClientCustomSSL.java)
 
 Integration with Metro
 ======================
@@ -56,13 +56,6 @@ To integrate the SSLContextFactory with Metro, follow the steps given below. The
 	// In case the method above doesn't work, please try:
 	// bindingProvider.getRequestContext().put("com.sun.xml.internal.ws.transport.https.client.SSLSocketFactory", sslContextFactory);
 
-Integration with CXF
-======================
-Coming soon.
-
-Integration with Axis2
-======================
-Coming soon.
 
 Caveats
 =======
